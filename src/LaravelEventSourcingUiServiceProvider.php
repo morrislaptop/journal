@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Morrislaptop\LaravelEventSourcingUi;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use Morrislaptop\LaravelEventSourcingUi\Commands\LaravelEventSourcingUiCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class LaravelEventSourcingUiServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('laravel-event-sourcing-ui')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_laravel-event-sourcing-ui_table')
+            ->hasCommand(LaravelEventSourcingUiCommand::class);
     }
 }
