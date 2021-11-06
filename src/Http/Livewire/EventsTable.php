@@ -12,6 +12,8 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 
 class EventsTable extends DataTableComponent
 {
+    use EventModalTrait;
+
     public array $sorts = [
         'created_at' => 'desc',
         'aggregate_version' => 'desc',
@@ -23,19 +25,13 @@ class EventsTable extends DataTableComponent
     {
         return [
             Column::make('UUID', 'aggregate_uuid'),
-                // ->searchable(),
-            Column::make('Version', 'aggregate_version')
-                ->sortable(),
-                // ->searchable(),
-            Column::make('Type', 'event_class')
-                ->sortable(),
-                // ->searchable(),
-            // Column::make('event_properties')
-            //     ->sortable()
-            //     ->searchable(),
-            // Column::make('meta_data')
-            //     ->sortable()
-            //     ->searchable(),
+
+            Column::make('Event', 'aggregate_version')
+                ->sortable()
+                ->format(function ($value, $column, $row) {
+                    return $row->aggregate_version . '@' . call_user_func(config('journal.event_class_to_label'), ($row->event_class));
+                }),
+
             Column::make('Created', 'created_at')
                 ->sortable()
                 ->format(function($value, $column, $row) {
@@ -92,7 +88,8 @@ class EventsTable extends DataTableComponent
     protected function addNamespaceAggregateUuid(Builder $query, string $search)
     {
         $uuids = collect(config('journal.uuid5_namespaces'))
-            ->map(fn ($ns) => Uuid::uuid5($ns, $search)->toString());
+            ->map(fn ($ns) => Uuid::uuid5($ns, $search)->toString())
+            ->add($search);
 
         $query->whereIn('aggregate_uuid', $uuids);
     }
