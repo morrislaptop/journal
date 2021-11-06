@@ -52,7 +52,7 @@ The Journal dashboard may be accessed at the `/journal` route. By default, you w
         });
     }
 
-> You should ensure you change your `APP_ENV` environment variable to `production` in your production environment. Otherwise, your Telescope installation will be publicly available.
+> You should ensure you change your `APP_ENV` environment variable to `production` in your production environment. Otherwise, your Journal installation will be publicly available.
 
 #### Alternative Authentication Strategies
 
