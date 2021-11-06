@@ -2,9 +2,11 @@
 
 namespace Morrislaptop\Journal\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Morrislaptop\Journal\JournalServiceProvider;
+use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Morrislaptop\Journal\JournalServiceProvider;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Morrislaptop\Journal\JournalApplicationServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -20,6 +22,8 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
+            LivewireServiceProvider::class,
+            JournalApplicationServiceProvider::class,
             JournalServiceProvider::class,
         ];
     }
