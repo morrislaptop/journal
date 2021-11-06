@@ -1,17 +1,17 @@
 {
-    "name": "morrislaptop/laravel-event-sourcing-ui",
-    "description": "A UI for Spatie's Laravel Event Sourcing",
+    "name": ":vendor_slug/:package_slug",
+    "description": ":package_description",
     "keywords": [
-        "morrislaptop",
+        ":vendor_name",
         "laravel",
-        "laravel-event-sourcing-ui"
+        ":package_slug"
     ],
-    "homepage": "https://github.com/morrislaptop/laravel-event-sourcing-ui",
+    "homepage": "https://github.com/:vendor_slug/:package_slug",
     "license": "MIT",
     "authors": [
         {
-            "name": "Craig Morris",
-            "email": "craig.michael.morris@gmail.com",
+            "name": ":author_name",
+            "email": "author@domain.com",
             "role": "Developer"
         }
     ],
@@ -34,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Morrislaptop\\LaravelEventSourcingUi\\": "src",
-            "Morrislaptop\\LaravelEventSourcingUi\\Database\\Factories\\": "database/factories"
+            "VendorName\\Skeleton\\": "src",
+            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Morrislaptop\\LaravelEventSourcingUi\\Tests\\": "tests"
+            "VendorName\\Skeleton\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -54,10 +54,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Morrislaptop\\LaravelEventSourcingUi\\LaravelEventSourcingUiServiceProvider"
+                "VendorName\\Skeleton\\SkeletonServiceProvider"
             ],
             "aliases": {
-                "LaravelEventSourcingUi": "Morrislaptop\\LaravelEventSourcingUi\\LaravelEventSourcingUiFacade"
+                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
             }
         }
     },

@@ -1,6 +1,6 @@
 <?php
 
-namespace Morrislaptop\LaravelEventSourcingUi\Database\Factories;
+namespace VendorName\Skeleton\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

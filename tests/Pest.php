@@ -1,5 +1,5 @@
 <?php
 
-use Morrislaptop\LaravelEventSourcingUi\Tests\TestCase;
+use VendorName\Skeleton\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

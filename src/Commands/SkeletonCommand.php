@@ -1,12 +1,12 @@
 <?php
 
-namespace Morrislaptop\LaravelEventSourcingUi\Commands;
+namespace VendorName\Skeleton\Commands;
 
 use Illuminate\Console\Command;
 
-class LaravelEventSourcingUiCommand extends Command
+class SkeletonCommand extends Command
 {
-    public $signature = 'laravel-event-sourcing-ui';
+    public $signature = 'skeleton';
 
     public $description = 'My command';
 
