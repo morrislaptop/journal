@@ -14,12 +14,17 @@ trait EventModalTrait
 
     public function getTableRowUrl(): string
     {
-        return '#';
+        return '';
+    }
+
+    public function setTableRowClass($row): ?string
+    {
+        return 'cursor-pointer';
     }
 
     public function setTableRowAttributes($row): array
     {
-        return ['wire:click.prevent' => 'viewModal('.$row->id.')'];
+        return ['wire:click.stop.prevent' => 'viewModal('.$row->id.')'];
     }
 
     public function viewModal(string $uuid): void
