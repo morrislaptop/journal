@@ -2,9 +2,11 @@
 
 namespace Morrislaptop\Journal;
 
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Morrislaptop\Journal\Http\Livewire\Counter;
 use Morrislaptop\Journal\Commands\JournalCommand;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class JournalServiceProvider extends PackageServiceProvider
 {
@@ -18,8 +20,14 @@ class JournalServiceProvider extends PackageServiceProvider
         $package
             ->name('journal')
             ->hasConfigFile()
+            ->hasRoute('web')
             ->hasViews()
             ->hasMigration('create_journal_table')
             ->hasCommand(JournalCommand::class);
+    }
+
+    public function bootingPackage(): void
+    {
+        Livewire::component('journal:counter', Counter::class);
     }
 }

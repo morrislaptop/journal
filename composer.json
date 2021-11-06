@@ -17,8 +17,11 @@
     ],
     "require": {
         "php": "^8.0",
-        "spatie/laravel-package-tools": "^1.4.3",
-        "illuminate/contracts": "^8.37"
+        "illuminate/contracts": "^8.37",
+        "livewire/livewire": "^2.7",
+        "rappasoft/laravel-livewire-tables": "^1.20",
+        "spatie/laravel-event-sourcing": "^5.0",
+        "spatie/laravel-package-tools": "^1.4.3"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.3",
