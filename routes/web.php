@@ -2,5 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/journal', 'journal::dashboard')->middleware('web');
-Route::view('/journal/events', 'journal::events')->middleware('web');
+Route::group([
+    'domain' => config('journal.domain', null),
+    'prefix' => config('journal.path'),
+    'middleware' => config('journal.middleware'),
+], function () {
+    Route::view('/', 'journal::dashboard');
+});

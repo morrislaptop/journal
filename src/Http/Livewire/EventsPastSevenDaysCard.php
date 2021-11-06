@@ -11,7 +11,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 
-class NumberOfEventsCard extends Component
+class EventsPastSevenDaysCard extends Component
 {
     public bool $polling = true;
 
@@ -19,10 +19,15 @@ class NumberOfEventsCard extends Component
     {
         $storedEventModel = (string) config('event-sourcing.stored_event_model', EloquentStoredEvent::class);
 
+        $value = $storedEventModel::query()
+            ->where('created_at', '>', Carbon::now()->subDays(7))
+            ->where('created_at', '<', Carbon::now())
+            ->count();
+
         return view('journal::livewire.card', [
-            'icon' => 'heroicon-o-scale',
-            'label' => 'Total Events',
-            'value' => $storedEventModel::count(),
+            'icon' => 'heroicon-o-archive',
+            'label' => 'Events Past 7 Days',
+            'value' => $value,
         ]);
     }
 }

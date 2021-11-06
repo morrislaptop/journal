@@ -18,6 +18,7 @@ class EventsTable extends DataTableComponent
         'created_at' => 'desc',
         'aggregate_version' => 'desc',
     ];
+    public $refresh = 2000;
     public int $perPage = 25;
     public array $perPageAccepted = [10, 25, 50];
 

@@ -5,10 +5,14 @@ namespace Morrislaptop\Journal;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Morrislaptop\Journal\Http\Livewire\Counter;
+use Morrislaptop\Journal\Commands\InstallCommand;
 use Morrislaptop\Journal\Commands\JournalCommand;
 use Morrislaptop\Journal\Http\Livewire\EventsTable;
-use Morrislaptop\Journal\Http\Livewire\NumberOfEventsCard;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Morrislaptop\Journal\Http\Livewire\EventsPastHourCard;
+use Morrislaptop\Journal\Http\Livewire\NumberOfEventsCard;
+use Morrislaptop\Journal\Http\Livewire\EventsPerMinuteCard;
+use Morrislaptop\Journal\Http\Livewire\EventsPastSevenDaysCard;
 
 class JournalServiceProvider extends PackageServiceProvider
 {
@@ -24,13 +28,18 @@ class JournalServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasRoute('web')
             ->hasViews()
-            ->hasMigration('create_journal_table')
-            ->hasCommand(JournalCommand::class);
+            ->hasCommand(InstallCommand::class);
     }
 
     public function bootingPackage(): void
     {
+        $this->publishes([
+            __DIR__.'/../stubs/JournalServiceProvider.stub' => app_path('Providers/JournalServiceProvider.php'),
+        ], 'journal-provider');
+
         Livewire::component('journal::events', EventsTable::class);
         Livewire::component('journal::number-of-events-card', NumberOfEventsCard::class);
+        Livewire::component('journal::events-past-hour-card', EventsPastHourCard::class);
+        Livewire::component('journal::events-past-seven-days-card', EventsPastSevenDaysCard::class);
     }
 }

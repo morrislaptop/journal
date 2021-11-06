@@ -5,7 +5,7 @@
     <title>Journal{{ config('app.name') ? ' - ' . config('app.name') : '' }}</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="//unpkg.com/alpinejs@^3" defer></script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📽</text></svg>">
     <link href="https://unpkg.com/tailwindcss@^2/dist/base.min.css" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/components.min.css" rel="stylesheet">
@@ -25,13 +25,6 @@
 
 <body class="bg-gray-200">
     <div id="journal" v-cloak x-data="{ polling: true }">
-        <alert :message="alert.message"
-               :type="alert.type"
-               :auto-close="alert.autoClose"
-               :confirmation-proceed="alert.confirmationProceed"
-               :confirmation-cancel="alert.confirmationCancel"
-               v-if="alert.type"></alert>
-
         <div class="container mx-auto max-w-7xl px-4 mb-5">
             <div class="flex items-center py-6 border-b border-gray-300">
                 <span class="text-4xl">📽</span>
