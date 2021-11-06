@@ -6,24 +6,10 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/morrislaptop/journal.svg?style=flat-square)](https://packagist.org/packages/morrislaptop/journal)
 
 ---
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+Journal makes a wonderful companion to your local Laravel Event Sourcing development environment. Journal provides insight into the events coming into your application.
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this journal
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files
-3. Remove this block of text.
-4. Have fun creating your package.
-5. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/journal.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/journal)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+![index view](index.png)
+![detail view](detail.png)
 
 ## Installation
 
@@ -33,24 +19,44 @@ You can install the package via composer:
 composer require morrislaptop/journal
 ```
 
-You can publish and run the migrations with:
+After installing Journal, publish its assets using the `journal:install` Artisan command.
 
 ```bash
-php artisan vendor:publish --provider="Morrislaptop\Journal\JournalServiceProvider" --tag="journal-migrations"
-php artisan migrate
+php artisan journal:install
 ```
 
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="Morrislaptop\Journal\JournalServiceProvider" --tag="journal-config"
-```
+### Local Only Installation
 
-This is the contents of the published config file:
+If you plan to only use Journal to assist your local development, you may install Telescope using the `--dev` flag:
 
-```php
-return [
-];
-```
+    composer require morrislaptop/journal --dev
+    php artisan vendor:publish --provider="Morrislaptop\Journal\JournalServiceProvider" --tag="journal-config"
+
+### Dashboard Authorization
+
+The Journal dashboard may be accessed at the `/journal` route. By default, you will only be able to access this dashboard in the `local` environment. Within your `app/Providers/JournalServiceProvider.php` file, there is an [authorization gate](/docs/{{version}}/authorization#gates) definition. This authorization gate controls access to Journal in **non-local** environments. You are free to modify this gate as needed to restrict access to your Journal installation:
+
+    /**
+     * Register the Journal gate.
+     *
+     * This gate determines who can access Journal in non-local environments.
+     *
+     * @return void
+     */
+    protected function gate()
+    {
+        Gate::define('viewJournal', function ($user) {
+            return in_array($user->email, [
+                'cr@igmorr.is',
+            ]);
+        });
+    }
+
+> You should ensure you change your `APP_ENV` environment variable to `production` in your production environment. Otherwise, your Telescope installation will be publicly available.
+
+#### Alternative Authentication Strategies
+
+Remember that Laravel automatically injects the authenticated user into the gate closure. If your application is providing Journal security via another method, such as IP restrictions, then your Journal users may not need to "login". Therefore, you will need to change `function ($user)` closure signature above to `function ($user = null)` in order to force Laravel to not require authentication.
 
 ## Usage
 
