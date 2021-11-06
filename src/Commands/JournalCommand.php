@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Morrislaptop\Journal\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class JournalCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'journal';
 
     public $description = 'My command';
 
