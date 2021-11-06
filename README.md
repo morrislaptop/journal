@@ -58,13 +58,6 @@ The Journal dashboard may be accessed at the `/journal` route. By default, you w
 
 Remember that Laravel automatically injects the authenticated user into the gate closure. If your application is providing Journal security via another method, such as IP restrictions, then your Journal users may not need to "login". Therefore, you will need to change `function ($user)` closure signature above to `function ($user = null)` in order to force Laravel to not require authentication.
 
-## Usage
-
-```php
-$journal = new Morrislaptop\Journal();
-echo $journal->echoPhrase('Hello, Morrislaptop!');
-```
-
 ## Testing
 
 ```bash
