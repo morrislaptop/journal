@@ -2,11 +2,11 @@
 
 namespace Morrislaptop\Journal\Tests;
 
-use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench\TestCase as Orchestra;
-use Morrislaptop\Journal\JournalServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Livewire\LivewireServiceProvider;
 use Morrislaptop\Journal\JournalApplicationServiceProvider;
+use Morrislaptop\Journal\JournalServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
