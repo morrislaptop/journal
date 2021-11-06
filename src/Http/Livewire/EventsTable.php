@@ -2,13 +2,12 @@
 
 namespace Morrislaptop\Journal\Http\Livewire;
 
-use App\Models\User;
-use Ramsey\Uuid\Uuid;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
+use Ramsey\Uuid\Uuid;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
 
 class EventsTable extends DataTableComponent
 {
@@ -35,7 +34,7 @@ class EventsTable extends DataTableComponent
 
             Column::make('Created', 'created_at')
                 ->sortable()
-                ->format(function($value, $column, $row) {
+                ->format(function ($value, $column, $row) {
                     return view('journal::created_at')->withDate(Carbon::parse($value));
                 }),
         ];
@@ -49,7 +48,7 @@ class EventsTable extends DataTableComponent
             ->get()
             ->mapWithKeys(function ($item) {
                 return [
-                    $item->event_class => call_user_func(config('journal.event_class_to_label'), ($item->event_class))
+                    $item->event_class => call_user_func(config('journal.event_class_to_label'), ($item->event_class)),
                 ];
             });
 
@@ -81,8 +80,8 @@ class EventsTable extends DataTableComponent
     {
         return $this->getQuery()
             ->when($this->getFilter('event_class'), fn ($query, $type) => $query->where('event_class', $type))
-            ->when($this->getFilter('created_from'), fn($query, $date) => $query->where('created_at', '>=', $date))
-            ->when($this->getFilter('created_to'), fn($query, $date) => $query->where('created_at', '<=', $date))
+            ->when($this->getFilter('created_from'), fn ($query, $date) => $query->where('created_at', '>=', $date))
+            ->when($this->getFilter('created_to'), fn ($query, $date) => $query->where('created_at', '<=', $date))
             ->when($this->getFilter('search'), fn ($query, $search) => $this->addNamespaceAggregateUuid($query, $search));
     }
 

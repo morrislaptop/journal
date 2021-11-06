@@ -3,16 +3,13 @@
 namespace Morrislaptop\Journal;
 
 use Livewire\Livewire;
-use Spatie\LaravelPackageTools\Package;
-use Morrislaptop\Journal\Http\Livewire\Counter;
 use Morrislaptop\Journal\Commands\InstallCommand;
-use Morrislaptop\Journal\Commands\JournalCommand;
-use Morrislaptop\Journal\Http\Livewire\EventsTable;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Morrislaptop\Journal\Http\Livewire\EventsPastHourCard;
-use Morrislaptop\Journal\Http\Livewire\NumberOfEventsCard;
-use Morrislaptop\Journal\Http\Livewire\EventsPerMinuteCard;
 use Morrislaptop\Journal\Http\Livewire\EventsPastSevenDaysCard;
+use Morrislaptop\Journal\Http\Livewire\EventsTable;
+use Morrislaptop\Journal\Http\Livewire\NumberOfEventsCard;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class JournalServiceProvider extends PackageServiceProvider
 {

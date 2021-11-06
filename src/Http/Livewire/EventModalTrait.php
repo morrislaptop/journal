@@ -1,4 +1,5 @@
 <?php
+
 namespace Morrislaptop\Journal\Http\Livewire;
 
 use Spatie\EventSourcing\StoredEvents\Models\EloquentStoredEvent;
@@ -36,5 +37,4 @@ trait EventModalTrait
     {
         return 'journal::modal';
     }
-
 }
