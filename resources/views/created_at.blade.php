@@ -1,0 +1,1 @@
+<x-carbon :date="$date" />

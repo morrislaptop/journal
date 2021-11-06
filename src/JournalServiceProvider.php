@@ -6,6 +6,7 @@ use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Morrislaptop\Journal\Http\Livewire\Counter;
 use Morrislaptop\Journal\Commands\JournalCommand;
+use Morrislaptop\Journal\Http\Livewire\EventsTable;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class JournalServiceProvider extends PackageServiceProvider
@@ -28,6 +29,6 @@ class JournalServiceProvider extends PackageServiceProvider
 
     public function bootingPackage(): void
     {
-        Livewire::component('journal:counter', Counter::class);
+        Livewire::component('journal::events', EventsTable::class);
     }
 }
