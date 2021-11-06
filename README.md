@@ -34,7 +34,7 @@ If you plan to only use Journal to assist your local development, you may instal
 
 ### Dashboard Authorization
 
-The Journal dashboard may be accessed at the `/journal` route. By default, you will only be able to access this dashboard in the `local` environment. Within your `app/Providers/JournalServiceProvider.php` file, there is an [authorization gate](/docs/{{version}}/authorization#gates) definition. This authorization gate controls access to Journal in **non-local** environments. You are free to modify this gate as needed to restrict access to your Journal installation:
+The Journal dashboard may be accessed at the `/journal` route. By default, you will only be able to access this dashboard in the `local` environment. Within your `app/Providers/JournalServiceProvider.php` file, there is an [authorization gate](https://laravel.com/docs/8.x/authorization#gates) definition. This authorization gate controls access to Journal in **non-local** environments. You are free to modify this gate as needed to restrict access to your Journal installation:
 
     /**
      * Register the Journal gate.
