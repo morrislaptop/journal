@@ -27,7 +27,7 @@ php artisan journal:install
 
 ### Local Only Installation
 
-If you plan to only use Journal to assist your local development, you may install Telescope using the `--dev` flag:
+If you plan to only use Journal to assist your local development, you may install Journal using the `--dev` flag:
 
     composer require morrislaptop/journal --dev
     php artisan vendor:publish --provider="Morrislaptop\Journal\JournalServiceProvider" --tag="journal-config"
