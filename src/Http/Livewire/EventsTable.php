@@ -82,15 +82,23 @@ class EventsTable extends DataTableComponent
             ->when($this->getFilter('event_class'), fn ($query, $type) => $query->where('event_class', $type))
             ->when($this->getFilter('created_from'), fn ($query, $date) => $query->where('created_at', '>=', $date))
             ->when($this->getFilter('created_to'), fn ($query, $date) => $query->where('created_at', '<=', $date))
-            ->when($this->getFilter('search'), fn ($query, $search) => $this->addNamespaceAggregateUuid($query, $search));
+            ->when($this->getFilter('search'), fn ($query, $search) => $this->addSearch($query, $search));
     }
 
-    protected function addNamespaceAggregateUuid(Builder $query, string $search)
+    /**
+     * @todo Do we want to search inside data or metadata? Probably very slow...
+     */
+    protected function addSearch(Builder $query, string $search)
     {
-        $uuids = collect(config('journal.uuid5_namespaces'))
-            ->map(fn ($ns) => Uuid::uuid5($ns, $search)->toString())
-            ->add($search);
+        // if it's a UUID, just search by aggregate_uuid
+        if (Uuid::isValid($search)) {
+            return $query->where('aggregate_uuid', $search);
+        }
 
-        $query->whereIn('aggregate_uuid', $uuids);
+        // otherwise, let's convert to a uuid using our namespaces from config.
+        $uuids = collect(config('journal.uuid5_namespaces'))
+            ->map(fn ($ns) => Uuid::uuid5($ns, $search)->toString());
+
+        return $query->whereIn('aggregate_uuid', $uuids);
     }
 }
