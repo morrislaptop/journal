@@ -23,7 +23,7 @@
         "illuminate/contracts": "^8.37",
         "livewire/livewire": "^2.7",
         "rappasoft/laravel-livewire-tables": "^1.20",
-        "spatie/laravel-event-sourcing": "^5.0",
+        "spatie/laravel-event-sourcing": "^5.0|^6.0|^7.0",
         "spatie/laravel-package-tools": "^1.4.3"
     },
     "require-dev": {
@@ -55,7 +55,11 @@
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "laravel": {
